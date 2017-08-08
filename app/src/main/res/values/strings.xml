@@ -1,0 +1,23 @@
+<resources>
+  <string name="app_name">Author Mate</string>
+    <string-array name="project_array">
+      <item>Mercury</item>
+      <item>Venus</item>
+      <item>Earth</item>
+      <item>Mars</item>
+      <item>Jupiter</item>
+      <item>Saturn</item>
+      <item>Uranus</item>
+      <item>Neptune</item>
+    </string-array>
+    <string name="drawer_open">Open navigation drawer</string>
+    <string name="drawer_close">Close navigation drawer</string>
+  <string name="deadline">Deadline</string>
+  <string name="project">Project</string>
+  <string name="word_count_goal">Word Count Goal</string>
+  <string name="advised_daily_goal">Advised Daily Goal</string>
+  <string name="progress">Progress</string>
+  <string name="words_remaining">Words Remaining</string>
+  <string name="words_written">Words Written</string>
+
+</resources>
