@@ -43,7 +43,7 @@ public class NavigationActivity extends AppCompatActivity {
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    setContentView(R.layout.drawer_layout);
+    setContentView(R.layout.activity_navigation);
 
     OrmHelper ormHelper = OpenHelperManager.getHelper(this, OrmHelper.class);
     ormHelper.getWritableDatabase().close();
