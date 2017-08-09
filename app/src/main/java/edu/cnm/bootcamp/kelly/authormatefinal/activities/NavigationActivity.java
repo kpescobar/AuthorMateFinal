@@ -6,6 +6,8 @@ import android.app.SearchManager;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.NavigationView;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.DrawerLayout;
@@ -15,15 +17,24 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Toast;
 import com.j256.ormlite.android.apptools.OpenHelperManager;
+import com.j256.ormlite.dao.Dao;
+import com.j256.ormlite.stmt.QueryBuilder;
 import edu.cnm.bootcamp.kelly.authormatefinal.R;
+import edu.cnm.bootcamp.kelly.authormatefinal.entities.Project;
+import edu.cnm.bootcamp.kelly.authormatefinal.helpers.AndroidDatabaseManager;
 import edu.cnm.bootcamp.kelly.authormatefinal.helpers.OrmHelper;
+import java.sql.SQLException;
+import java.util.List;
 import java.util.Locale;
 
 /**
@@ -34,28 +45,72 @@ public class NavigationActivity extends AppCompatActivity {
 
   private DrawerLayout drawerLayout;
   private ListView drawerList;
+  private NavigationView drawer;
   private ActionBarDrawerToggle drawerToggle;
 
   private CharSequence drawerTitle;
   private CharSequence title;
-  private String[] projectTitles;
+//  private String[] projectTitles;
+  private List<Project> projects = null;
+  private OrmHelper helper = null;
+
+  public synchronized OrmHelper getHelper() {
+    if (helper == null) {
+      helper = OpenHelperManager.getHelper(this, OrmHelper.class);
+    }
+    return helper;
+  }
+
+  public synchronized void releaseHelper() {
+    OpenHelperManager.releaseHelper();
+    helper = null;
+  }
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_navigation);
 
-    OrmHelper ormHelper = OpenHelperManager.getHelper(this, OrmHelper.class);
-    ormHelper.getWritableDatabase().close();
+    getHelper().getWritableDatabase().close();
+
+//    FloatingActionButton newprButton = (FloatingActionButton) findViewById(R.id.newprButton);
+//    newprButton.setOnClickListener(new OnClickListener() {
+//      @Override
+//      public void onClick(View v) {
+//        Intent createIntent = new Intent(NavigationActivity.this, NewProject.class);
+//        startActivity(createIntent);
+//      }
+//    });
+
+    Button databaseButton = (Button) findViewById(R.id.databaseButton);
+    databaseButton.setOnClickListener(new OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        Intent testIntent = new Intent(NavigationActivity.this, AndroidDatabaseManager.class);
+        startActivity(testIntent);
+      }
+    });
+
+    Button listButton = (Button) findViewById(R.id.listButton);
+    listButton.setOnClickListener(new OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        Intent listActivity = new Intent(NavigationActivity.this, TestActivity.class);
+        startActivity(listActivity);
+      }
+    });
+
 
     title = drawerTitle = getTitle();
-    projectTitles = getResources().getStringArray(R.array.project_array);
+//    projectTitles = getResources().getStringArray(R.array.project_array);
+    projects = getProjects();
     drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-    drawerList = (ListView) findViewById(R.id.left_drawer);
+    drawer = (NavigationView) findViewById(R.id.nav_view);
+    drawerList = (ListView) findViewById(R.id.left_drawer_list);
 
     // set up the drawer's list view with items and click listener
-    drawerList.setAdapter(new ArrayAdapter<String>(this,
-        R.layout.drawer_list_item, projectTitles));
+    drawerList.setAdapter(new ArrayAdapter<Project>(this,
+        R.layout.drawer_list_item, projects));
     drawerList.setOnItemClickListener(new DrawerItemClickListener());
 
     // enable ActionBar app icon to behave as action to toggle nav drawer
@@ -83,9 +138,9 @@ public class NavigationActivity extends AppCompatActivity {
     };
     drawerLayout.setDrawerListener(drawerToggle);
 
-    if (savedInstanceState == null) {
-      selectItem(0, projectTitles[0]);
-    }
+//    if (savedInstanceState == null) {
+//      selectItem(0, projectTitles[0]);
+//    }
   }
 
   @Override
@@ -99,7 +154,7 @@ public class NavigationActivity extends AppCompatActivity {
   @Override
   public boolean onPrepareOptionsMenu(Menu menu) {
     // If the nav drawer is open, hide action items related to the content view
-    boolean drawerOpen = drawerLayout.isDrawerOpen(drawerList);
+    boolean drawerOpen = drawerLayout.isDrawerOpen(drawer);
 //      menu.findItem(R.id.action_websearch).setVisible(!drawerOpen);
     return super.onPrepareOptionsMenu(menu);
   }
@@ -135,25 +190,31 @@ public class NavigationActivity extends AppCompatActivity {
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-      selectItem(position, projectTitles[position]);
+      selectItem(position, (Project) parent.getItemAtPosition(position));
     }
   }
-
-  private void selectItem(int position, String title) {
+// listener
+  private void selectItem(int position, Project project) {
     // update the main content by replacing fragments
     Fragment fragment = new ProjectFragment();
     Bundle args = new Bundle();
-    args.putString(ProjectFragment.PROJECT_TITLE, title);
+    args.putString(ProjectFragment.PROJECT_TITLE, project.getTitle());
+    args.putInt(ProjectFragment.PROJECT_ID, project.getId());
     fragment.setArguments(args);
 
-    android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
-    fragmentManager.beginTransaction().replace(R.id.content_frame, fragment).commit();
+    switchFragment(fragment);
 
     // update selected item and title, then close the drawer
     drawerList.setItemChecked(position, true);
     setTitle(title);
-    drawerLayout.closeDrawer(drawerList);
+    drawerLayout.closeDrawer(drawer);
   }
+
+  public void switchFragment(Fragment fragment) {
+    android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
+    fragmentManager.beginTransaction().replace(R.id.content_frame, fragment).commit();
+  }
+
 
   @Override
   public void setTitle(CharSequence title) {
@@ -186,6 +247,7 @@ public class NavigationActivity extends AppCompatActivity {
   public static class ProjectFragment extends Fragment {
 
     public static final String PROJECT_TITLE = "project_title";
+    public static final String PROJECT_ID = "project_id";
 
     public ProjectFragment() {
       // Empty constructor required for fragment subclasses
@@ -204,5 +266,38 @@ public class NavigationActivity extends AppCompatActivity {
       return rootView;
     }
   }
+
+  private List<Project> getProjects() {
+    try {
+      Dao<Project, Integer> dao = getHelper().getProjectDao();
+      QueryBuilder<Project, Integer> builder = dao.queryBuilder();
+      builder.orderBy("CREATED", true);
+      return dao.query(builder.prepare());
+    } catch (SQLException ex) {
+      ex.printStackTrace();
+      throw new RuntimeException(ex);
+    }
+  }
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

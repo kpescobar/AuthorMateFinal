@@ -18,19 +18,22 @@
     android:layout_width="wrap_content"
     android:layout_height="match_parent"
     android:layout_gravity="start"
-    android:fitsSystemWindows="true"
-    app:headerLayout="@layout/nav_header_navigation"
-    app:menu="@menu/activity_navigation_drawer">
+    android:fitsSystemWindows="true">
 
     <LinearLayout
+      android:id="@+id/left_drawer"
       android:layout_width="match_parent"
       android:layout_height="165dp"
       android:layout_gravity="bottom" >
+      <ListView
+        android:id="@+id/left_drawer_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"></ListView>
       <TextView
         android:id="@+id/how_to_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/how_to_text"
+        android:text="Author Mate is a tool for writers to set writing goals/deadlines for any project."
         android:layout_marginStart="28dp"
         android:layout_marginLeft="28dp"
         android:layout_marginEnd="28dp"

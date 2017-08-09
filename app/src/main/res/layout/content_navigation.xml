@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:id="@+id/content_frame"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  app:layout_behavior="@string/appbar_scrolling_view_behavior"
+  tools:context="edu.cnm.bootcamp.kelly.authormatefinal.activities.NavigationActivity"
+  tools:showIn="@layout/app_bar_navigation">
+
+  <Button
+    android:id="@+id/listButton"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_alignTop="@+id/databaseButton"
+    android:layout_toEndOf="@+id/databaseButton"
+    android:layout_toRightOf="@+id/databaseButton"
+    android:text="List"
+    tools:layout_editor_absoluteY="447dp"
+    tools:layout_editor_absoluteX="208dp"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toStartOf="@+id/newprButton"
+    app:layout_constraintStart_toEndOf="@+id/databaseButton"
+    android:layout_marginBottom="16dp" />
+
+  <Button
+    android:id="@+id/databaseButton"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="Database Manager"
+    android:layout_toLeftOf="@+id/newprButton"
+    android:layout_toStartOf="@+id/newprButton"
+    tools:layout_editor_absoluteY="447dp"
+    tools:layout_editor_absoluteX="16dp"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintStart_toEndOf="parent"
+    android:layout_marginStart="18dp"
+    android:layout_marginLeft="18dp"
+    android:layout_marginBottom="16dp" />
+
+
+  <android.support.design.widget.FloatingActionButton
+    android:id="@+id/newprButton"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:clickable="true"
+    app:fabSize="mini"
+    app:srcCompat="@android:drawable/ic_input_add"
+    tools:layout_editor_absoluteY="455dp"
+    tools:layout_editor_absoluteX="328dp"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toStartOf="parent"
+    android:layout_marginBottom="18dp"
+    android:layout_marginEnd="18dp"
+    android:layout_marginRight="18dp"
+    android:layout_marginStart="3dp"
+    android:layout_marginLeft="3dp" />
+
+
+</android.support.constraint.ConstraintLayout>
