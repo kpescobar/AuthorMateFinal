@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  android:id="@+id/how_to_use_fragment"
   android:orientation="vertical" android:layout_width="match_parent"
   android:layout_height="match_parent"
   android:weightSum="1">
@@ -8,18 +9,21 @@
     android:id="@+id/textView2"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:text="TextView"
+    android:text="Author Mate is a tool for writers to set writing goals/deadlines for any project."
     android:layout_weight="0.20" />
   <TextView
     android:id="@+id/textView3"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:text="TextView"
+    android:text="To create a new project: Give it a title, enter a word count goal, choose the
+    date you want to be finished by and it's that easy."
     android:layout_weight="0.19" />
   <TextView
     android:id="@+id/textView4"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:text="TextView"
+    android:text="To update an existing project: Choose your project, enter your word count for the
+    day in the text field and it will add that amount to your existing word count to
+    date."
     android:layout_weight="0.20" />
 </LinearLayout>

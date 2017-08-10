@@ -17,9 +17,16 @@
         <category android:name="android.intent.category.LAUNCHER" />
       </intent-filter>
     </activity>
+    <activity android:name=".activities.TestActivity" />
     <activity
       android:name=".helpers.AndroidDatabaseManager"
       android:theme="@style/Theme.AppCompat.Light" />
+    <service
+      android:name=".services.Service"
+      android:enabled="true" />
+    <receiver
+      android:name=".services.Receiver"
+      android:enabled="true"/>
 
   </application>
 

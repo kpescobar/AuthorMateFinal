@@ -210,9 +210,10 @@ public class NavigationActivity extends AppCompatActivity {
     drawerLayout.closeDrawer(drawer);
   }
 
+
   public void switchFragment(Fragment fragment) {
     android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
-    fragmentManager.beginTransaction().replace(R.id.content_frame, fragment).commit();
+    fragmentManager.beginTransaction().replace(R.id.fragment_home, fragment).commit();
   }
 
 
