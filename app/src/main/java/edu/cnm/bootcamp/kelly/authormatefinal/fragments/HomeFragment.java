@@ -31,7 +31,7 @@ public class HomeFragment extends Fragment {
       @Override
       public void onClick(View v) {
         Fragment fragment = new HowToUseFragment();
-        switchFragment(fragment);
+        ((NavigationActivity) getActivity()).switchFragment(fragment);
       }
     });
 
@@ -40,15 +40,15 @@ public class HomeFragment extends Fragment {
       @Override
       public void onClick(View v) {
         Fragment fragment = new NewProjectFragment();
-        switchFragment(fragment);
+        ((NavigationActivity) getActivity()).switchFragment(fragment);
       }
     });
     return rootView;
   }
-  public void switchFragment(Fragment fragment) {
-    android.support.v4.app.FragmentManager fragmentManager = getFragmentManager();
-    fragmentManager.beginTransaction().replace(R.id.fragment_home, fragment).commit();
-  }
+//  public void switchFragment(Fragment fragment) {
+//    android.support.v4.app.FragmentManager fragmentManager = getFragmentManager();
+//    fragmentManager.beginTransaction().replace(R.id.fragment_home, fragment).commit();
+//  }
 
 //    Button databaseButton = (Button) findViewById(R.id.databaseButton);
 //    databaseButton.setOnClickListener(new OnClickListener() {

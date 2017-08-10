@@ -20,5 +20,8 @@
   <string name="words_remaining">Words Remaining</string>
   <string name="words_written">Words Written</string>
   <string name="create_new_project">Create New Project</string>
+  <string name="notifications">Notifications</string>
+  <string name="off">Off</string>
+  <string name="on">On</string>
 
 </resources>

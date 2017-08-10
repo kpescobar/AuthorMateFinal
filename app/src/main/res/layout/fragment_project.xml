@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout android:layout_width="match_parent"
+  android:id="@+id/fragment_project"
   android:layout_height="match_parent"
   android:orientation="vertical"
   xmlns:android="http://schemas.android.com/apk/res/android">
@@ -140,20 +141,43 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:text="Update" />
-  <TextView
-    android:id="@+id/textView6"
+  <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:text="Notifications" />
-  <RadioButton
-    android:id="@+id/radioButton2"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="On" />
-  <RadioButton
-    android:id="@+id/radioButton3"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="Off" />
-
+    android:orientation="horizontal">
+    <LinearLayout
+      android:layout_width="0dp"
+      android:layout_height="wrap_content"
+      android:layout_weight="1"
+      android:orientation="vertical">
+      <TextView
+        android:id="@+id/textView6"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="@string/notifications" />
+      <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <RadioButton
+          android:id="@+id/radioButtonOn"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="@string/on" />
+        <RadioButton
+          android:id="@+id/radioButtonOff"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="@string/off"
+          android:checked="true"/>
+      </RadioGroup>
+    </LinearLayout>
+    <TimePicker
+      android:id="@+id/timePicker"
+      android:layout_width="0dp"
+      android:layout_height="wrap_content"
+      android:layout_weight="2"
+      android:visibility="invisible"/>
+  </LinearLayout>
 </LinearLayout>

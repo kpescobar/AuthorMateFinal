@@ -30,7 +30,7 @@ public class AlarmNotification extends AppCompatActivity {
 //        intent.putEx
         PendingIntent pending = PendingIntent.getBroadcast(AlarmNotification.this, 0, intent, 0);
         if (toggle.isChecked()) {
-          TimePicker picker = (TimePicker) findViewById(R.id.alarmTimePicker);
+          TimePicker picker = (TimePicker) findViewById(R.id.timePicker);
           Calendar calendar = Calendar.getInstance();
           SimpleDateFormat format = new SimpleDateFormat("HH:mm");
           calendar.set(Calendar.HOUR_OF_DAY, picker.getCurrentHour());
