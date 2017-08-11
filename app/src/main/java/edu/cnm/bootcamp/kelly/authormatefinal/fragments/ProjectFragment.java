@@ -4,6 +4,8 @@ package edu.cnm.bootcamp.kelly.authormatefinal.fragments;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -57,6 +59,29 @@ public class ProjectFragment extends Fragment implements OnClickListener {
     final int projectId = args.getInt(PROJECT_ID);
 
     timeSpinner(layout);
+
+    final EditText editTextUpdate = (EditText) layout.findViewById(R.id.editTextUpdate);
+    editTextUpdate.addTextChangedListener(new TextWatcher() {
+      @Override
+      public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+      }
+
+      @Override
+      public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+      }
+
+      @Override
+      public void afterTextChanged(Editable s) {
+        Button updateButton = (Button) layout.findViewById(R.id.updateButton);
+        if (editTextUpdate.getText().toString().trim().length() == 0) {
+          updateButton.setEnabled(false);
+        } else {
+          updateButton.setEnabled(true);
+        }
+      }
+    });
 
     try {
       Dao<Project, Integer> projectDao = ((NavigationActivity) getActivity()).getHelper()
@@ -125,7 +150,7 @@ public class ProjectFragment extends Fragment implements OnClickListener {
 
     TextView wordsRemainingText = (TextView) layout.findViewById(R.id.wordsRemainingText);
     int wordsRemaining = currentProject.getGoal() - wordsWritten;
-    wordsRemainingText.setText(String.format("%d", Math.max(0, wordsRemaining));
+    wordsRemainingText.setText(Integer.toString(Math.max(0, wordsRemaining)));
 
     TextView advisedDailyText = (TextView) layout.findViewById(R.id.advisedDailyText);
     int daysRemaining = daysRemaining();
