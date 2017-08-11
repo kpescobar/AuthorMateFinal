@@ -58,22 +58,23 @@ public class NavigationActivity extends AppCompatActivity {
 
   public synchronized OrmHelper getHelper() {
     if (helper == null) {
-      helper = OpenHelperManager.getHelper(this, OrmHelper.class);
+        helper = OpenHelperManager.getHelper(this, OrmHelper.class);
     }
     return helper;
   }
 
   public synchronized void releaseHelper() {
-    OpenHelperManager.releaseHelper();
-    helper = null;
+    if (helper != null) {
+      OpenHelperManager.releaseHelper();
+      helper = null;
+    }
   }
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    setContentView(R.layout.activity_navigation);
-
     getHelper().getWritableDatabase().close();
+    setContentView(R.layout.activity_navigation);
 
 //    FloatingActionButton newprButton = (FloatingActionButton) findViewById(R.id.newprButton);
 //    newprButton.setOnClickListener(new OnClickListener() {
@@ -146,6 +147,18 @@ public class NavigationActivity extends AppCompatActivity {
 //    if (savedInstanceState == null) {
 //      selectItem(0, projectTitles[0]);
 //    }
+  }
+
+  @Override
+  protected void onStart() {
+    super.onStart();
+    getHelper();
+  }
+
+  @Override
+  protected void onStop() {
+    super.onStop();
+    releaseHelper();
   }
 
   @Override

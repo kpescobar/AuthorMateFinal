@@ -91,7 +91,7 @@
       android:paddingBottom="5dp"
       android:text="@string/words_remaining" />
     <TextView
-      android:id="@+id/textView34"
+      android:id="@+id/wordsRemainingText"
       android:layout_width="match_parent"
       android:layout_height="30dp"
       android:layout_weight="1"
@@ -114,7 +114,7 @@
       android:paddingBottom="5dp"
       android:text="@string/advised_daily_goal" />
     <TextView
-      android:id="@+id/textView32"
+      android:id="@+id/advisedDailyText"
       android:layout_width="match_parent"
       android:layout_height="30dp"
       android:layout_weight="1"

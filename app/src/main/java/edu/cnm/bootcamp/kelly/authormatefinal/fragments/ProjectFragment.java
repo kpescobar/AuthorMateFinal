@@ -63,6 +63,9 @@ public class ProjectFragment extends Fragment implements OnClickListener {
           .getProjectDao();
       currentProject = projectDao.queryForId(projectId);
 
+      TextView projectText = (TextView) layout.findViewById(R.id.projectText);
+      projectText.setText(currentProject.getTitle().toString());
+
       TextView wordCountText = (TextView) layout.findViewById(R.id.wordCountTextView);
       wordCountText.setText(Integer.toString(currentProject.getGoal()));
 
@@ -71,8 +74,7 @@ public class ProjectFragment extends Fragment implements OnClickListener {
       TextView deadlineText = (TextView) layout.findViewById(R.id.deadlineTextView);
       deadlineText.setText(format.format(currentProject.getTarget()));
 
-      TextView wordsWrittenText = (TextView) layout.findViewById(R.id.wordsWrittenText);
-      wordsWrittenText.setText(Integer.toString(getWordsWritten()));
+      updateStats(layout);
 
 //      Spinner spinner = (Spinner) layout.findViewById(R.id.spinner);
 //      currentProject.setTime
@@ -98,9 +100,14 @@ public class ProjectFragment extends Fragment implements OnClickListener {
           EditText editTextUpdate = (EditText) layout.findViewById(R.id.editTextUpdate);
           update.setCount(Integer.parseInt(editTextUpdate.getText().toString()));
 
+          editTextUpdate.setText(""); //added
+
           update.setProject(currentProject);
 
           dao.create(update);
+
+          updateStats(layout);
+
         } catch (SQLException ex) {
           ex.printStackTrace();
         }
@@ -108,6 +115,41 @@ public class ProjectFragment extends Fragment implements OnClickListener {
     });
 
     return layout;
+  }
+
+  private void updateStats(View layout) {
+
+    TextView wordsWrittenText = (TextView) layout.findViewById(R.id.wordsWrittenText);
+    int wordsWritten = getWordsWritten();
+    wordsWrittenText.setText(Integer.toString(wordsWritten));
+
+    TextView wordsRemainingText = (TextView) layout.findViewById(R.id.wordsRemainingText);
+    int wordsRemaining = currentProject.getGoal() - wordsWritten;
+    wordsRemainingText.setText(String.format("%d", Math.max(0, wordsRemaining));
+
+    TextView advisedDailyText = (TextView) layout.findViewById(R.id.advisedDailyText);
+    int daysRemaining = daysRemaining();
+    if (wordsRemaining <= 0) {
+      //TODO print yay!
+    } else if (daysRemaining <= 0) {
+      //TODO can't meet
+    } else {
+      int wordsPerDay = Math.round(wordsRemaining / (float) daysRemaining);
+      advisedDailyText.setText(Integer.toString(wordsPerDay));
+    }
+
+
+  }
+
+  private int daysRemaining() {
+    Date target = currentProject.getTarget();
+    Date today = new Date();
+    if (target.after(today)) {
+      long timeRemaining = target.getTime()- today.getTime();
+      return (int) Math.ceil(timeRemaining/1000/60/60/24.0);
+    } else {
+      return 0;
+    }
   }
 
   private int getWordsWritten() {
@@ -128,12 +170,15 @@ public class ProjectFragment extends Fragment implements OnClickListener {
 
       String[] values = results.getFirstResult();
 
-      int count = (values == null) ? 0 : Integer.parseInt(values[0]);
+      int count = (values == null || values.length == 0 || values[0] == null) ? 0 : Integer.parseInt(values[0]);
 
       return count;
 
 
     } catch (SQLException ex) {
+      ex.printStackTrace();
+      return 0;
+    } catch (NumberFormatException ex) {
       ex.printStackTrace();
       return 0;
     }
@@ -151,6 +196,7 @@ public class ProjectFragment extends Fragment implements OnClickListener {
 //      case R.id.updateButton:
     }
   }
+
 
 
 }
