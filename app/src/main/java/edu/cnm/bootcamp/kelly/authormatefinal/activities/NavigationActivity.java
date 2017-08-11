@@ -31,6 +31,8 @@ import com.j256.ormlite.dao.Dao;
 import com.j256.ormlite.stmt.QueryBuilder;
 import edu.cnm.bootcamp.kelly.authormatefinal.R;
 import edu.cnm.bootcamp.kelly.authormatefinal.entities.Project;
+import edu.cnm.bootcamp.kelly.authormatefinal.fragments.HomeFragment;
+import edu.cnm.bootcamp.kelly.authormatefinal.fragments.ProjectFragment;
 import edu.cnm.bootcamp.kelly.authormatefinal.helpers.AndroidDatabaseManager;
 import edu.cnm.bootcamp.kelly.authormatefinal.helpers.OrmHelper;
 import java.sql.SQLException;
@@ -138,6 +140,9 @@ public class NavigationActivity extends AppCompatActivity {
     };
     drawerLayout.setDrawerListener(drawerToggle);
 
+    Fragment fragment = new HomeFragment();
+    switchFragment(fragment);
+
 //    if (savedInstanceState == null) {
 //      selectItem(0, projectTitles[0]);
 //    }
@@ -242,31 +247,6 @@ public class NavigationActivity extends AppCompatActivity {
     drawerToggle.onConfigurationChanged(newConfig);
   }
 
-  /**
-   * Fragment that appears in the "content_frame", shows a planet
-   */
-  public static class ProjectFragment extends Fragment {
-
-    public static final String PROJECT_TITLE = "project_title";
-    public static final String PROJECT_ID = "project_id";
-
-    public ProjectFragment() {
-      // Empty constructor required for fragment subclasses
-    }
-
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-        Bundle savedInstanceState) {
-      View rootView = inflater.inflate(R.layout.fragment_project, container, false);
-      String title = getArguments().getString(PROJECT_TITLE);
-
-//        int imageId = getResources().getIdentifier(planet.toLowerCase(Locale.getDefault()),
-//            "drawable", getActivity().getPackageName());
-//        ((ImageView) rootView.findViewById(R.id.image)).setImageResource(imageId);
-      getActivity().setTitle(title);
-      return rootView;
-    }
-  }
 
   private List<Project> getProjects() {
     try {

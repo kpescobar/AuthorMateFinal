@@ -4,7 +4,7 @@ import com.j256.ormlite.dao.ForeignCollection;
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.field.ForeignCollectionField;
 import com.j256.ormlite.table.DatabaseTable;
-import java.sql.Date;
+import java.util.Date;
 import java.sql.Timestamp;
 
 /**
@@ -26,7 +26,7 @@ import java.sql.Timestamp;
     @DatabaseField(columnName = "GOAL", canBeNull = false)
     private Integer goal;
 
-    @DatabaseField(columnName = "TARGET", canBeNull = false)
+    @DatabaseField(columnName = "TARGET", canBeNull = false, format = "yyyy-MM-dd")
     private Date target;
 
     @DatabaseField(columnName = "NOTES")
