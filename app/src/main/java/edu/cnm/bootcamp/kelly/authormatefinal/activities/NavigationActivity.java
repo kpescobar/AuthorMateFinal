@@ -53,7 +53,7 @@ public class NavigationActivity extends AppCompatActivity {
   private CharSequence drawerTitle;
   private CharSequence title;
 //  private String[] projectTitles;
-  private List<Project> projects = null;
+
   private OrmHelper helper = null;
 
   public synchronized OrmHelper getHelper() {
@@ -85,35 +85,33 @@ public class NavigationActivity extends AppCompatActivity {
 //      }
 //    });
 
-    Button databaseButton = (Button) findViewById(R.id.databaseButton);
-    databaseButton.setOnClickListener(new OnClickListener() {
-      @Override
-      public void onClick(View v) {
-        Intent testIntent = new Intent(NavigationActivity.this, AndroidDatabaseManager.class);
-        startActivity(testIntent);
-      }
-    });
-
-    Button listButton = (Button) findViewById(R.id.listButton);
-    listButton.setOnClickListener(new OnClickListener() {
-      @Override
-      public void onClick(View v) {
-        Intent listActivity = new Intent(NavigationActivity.this, TestActivity.class);
-        startActivity(listActivity);
-      }
-    });
+//    Button databaseButton = (Button) findViewById(R.id.databaseButton);
+//    databaseButton.setOnClickListener(new OnClickListener() {
+//      @Override
+//      public void onClick(View v) {
+//        Intent testIntent = new Intent(NavigationActivity.this, AndroidDatabaseManager.class);
+//        startActivity(testIntent);
+//      }
+//    });
+//
+//    Button listButton = (Button) findViewById(R.id.listButton);
+//    listButton.setOnClickListener(new OnClickListener() {
+//      @Override
+//      public void onClick(View v) {
+//        Intent listActivity = new Intent(NavigationActivity.this, TestActivity.class);
+//        startActivity(listActivity);
+//      }
+//    });
 
 
     title = drawerTitle = getTitle();
 //    projectTitles = getResources().getStringArray(R.array.project_array);
-    projects = getProjects();
     drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
     drawer = (NavigationView) findViewById(R.id.nav_view);
     drawerList = (ListView) findViewById(R.id.left_drawer_list);
 
     // set up the drawer's list view with items and click listener
-    drawerList.setAdapter(new ArrayAdapter<Project>(this,
-        R.layout.drawer_list_item, projects));
+    setNavigationProjects();
     drawerList.setOnItemClickListener(new DrawerItemClickListener());
 
     // enable ActionBar app icon to behave as action to toggle nav drawer
@@ -141,12 +139,20 @@ public class NavigationActivity extends AppCompatActivity {
     };
     drawerLayout.setDrawerListener(drawerToggle);
 
+    drawerToggle.setHomeAsUpIndicator(R.drawable.ic_drawer); // added
     Fragment fragment = new HomeFragment();
     switchFragment(fragment);
 
 //    if (savedInstanceState == null) {
 //      selectItem(0, projectTitles[0]);
 //    }
+  }
+
+  public void setNavigationProjects() {
+    ListView drawerList = (ListView) findViewById(R.id.left_drawer_list);
+    List<Project> projects = getProjects();
+    drawerList.setAdapter(new ArrayAdapter<Project>(this,
+        R.layout.drawer_list_item, projects));
   }
 
   @Override

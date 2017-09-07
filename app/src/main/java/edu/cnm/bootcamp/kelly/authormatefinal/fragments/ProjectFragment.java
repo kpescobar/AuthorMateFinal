@@ -40,13 +40,13 @@ public class ProjectFragment extends Fragment implements OnClickListener {
   public static final String PROJECT_ID = ProjectFragment.class.getName() + "PROJECT_ID";
   private Project currentProject;
 
-  protected void timeSpinner(View view) {
-    Spinner spinner = (Spinner) view.findViewById(R.id.spinner);
-    String[] times = getResources().getStringArray(R.array.time);
-    ArrayAdapter<String> adapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_item, times);
-    adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-    spinner.setAdapter(adapter);
-  }
+//  protected void timeSpinner(View view) {
+//    Spinner spinner = (Spinner) view.findViewById(R.id.spinner);
+//    String[] times = getResources().getStringArray(R.array.time);
+//    ArrayAdapter<String> adapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_item, times);
+//    adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+//    spinner.setAdapter(adapter);
+//  }
 
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -58,7 +58,7 @@ public class ProjectFragment extends Fragment implements OnClickListener {
     Bundle args = getArguments();
     final int projectId = args.getInt(PROJECT_ID);
 
-    timeSpinner(layout);
+//    timeSpinner(layout);
 
     final EditText editTextUpdate = (EditText) layout.findViewById(R.id.editTextUpdate);
     editTextUpdate.addTextChangedListener(new TextWatcher() {
@@ -108,36 +108,36 @@ public class ProjectFragment extends Fragment implements OnClickListener {
       ex.printStackTrace();
     }
 
-    RadioButton onButton = (RadioButton) layout.findViewById(R.id.radioButtonOn);
-    onButton.setOnClickListener(this);
-
-    RadioButton offButton = (RadioButton) layout.findViewById(R.id.radioButtonOff);
-    offButton.setOnClickListener(this);
-//Added all of this...
-    Button updateButton = (Button) layout.findViewById(R.id.updateButton);
-    updateButton.setOnClickListener(new View.OnClickListener() {
-      @Override
-      public void onClick(View view) {
-        try {
-          Dao<ProjectUpdate, Integer> dao = ((NavigationActivity) getActivity()).getHelper().getProjectUpdateDao();
-          ProjectUpdate update = new ProjectUpdate();
-
-          EditText editTextUpdate = (EditText) layout.findViewById(R.id.editTextUpdate);
-          update.setCount(Integer.parseInt(editTextUpdate.getText().toString()));
-
-          editTextUpdate.setText(""); //added
-
-          update.setProject(currentProject);
-
-          dao.create(update);
-
-          updateStats(layout);
-
-        } catch (SQLException ex) {
-          ex.printStackTrace();
-        }
-      }
-    });
+//    RadioButton onButton = (RadioButton) layout.findViewById(R.id.radioButtonOn);
+//    onButton.setOnClickListener(this);
+//
+//    RadioButton offButton = (RadioButton) layout.findViewById(R.id.radioButtonOff);
+//    offButton.setOnClickListener(this);
+////Added all of this...
+//    Button updateButton = (Button) layout.findViewById(R.id.updateButton);
+//    updateButton.setOnClickListener(new View.OnClickListener() {
+//      @Override
+//      public void onClick(View view) {
+//        try {
+//          Dao<ProjectUpdate, Integer> dao = ((NavigationActivity) getActivity()).getHelper().getProjectUpdateDao();
+//          ProjectUpdate update = new ProjectUpdate();
+//
+//          EditText editTextUpdate = (EditText) layout.findViewById(R.id.editTextUpdate);
+//          update.setCount(Integer.parseInt(editTextUpdate.getText().toString()));
+//
+//          editTextUpdate.setText(""); //added
+//
+//          update.setProject(currentProject);
+//
+//          dao.create(update);
+//
+//          updateStats(layout);
+//
+//        } catch (SQLException ex) {
+//          ex.printStackTrace();
+//        }
+//      }
+//    });
 
     return layout;
   }
@@ -211,15 +211,15 @@ public class ProjectFragment extends Fragment implements OnClickListener {
 
   @Override
   public void onClick(View view) {
-    switch(view.getId()) {
-      case R.id.radioButtonOn:
-        getActivity().findViewById(R.id.spinner).setVisibility(View.VISIBLE);
-        break;
-      case R.id.radioButtonOff:
-        getActivity().findViewById(R.id.spinner).setVisibility(View.INVISIBLE);
-          break;
-//      case R.id.updateButton:
-    }
+//    switch(view.getId()) {
+//      case R.id.radioButtonOn:
+//        getActivity().findViewById(R.id.spinner).setVisibility(View.VISIBLE);
+//        break;
+//      case R.id.radioButtonOff:
+//        getActivity().findViewById(R.id.spinner).setVisibility(View.INVISIBLE);
+//          break;
+////      case R.id.updateButton:
+//    }
   }
 
 

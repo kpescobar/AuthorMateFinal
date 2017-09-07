@@ -57,6 +57,7 @@ public class NewProjectFragment extends Fragment {
 
         }
         Fragment fragment = new HomeFragment();
+        ((NavigationActivity) getActivity()).setNavigationProjects();
         ((NavigationActivity) getActivity()).switchFragment(fragment);
       }
     });
