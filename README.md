@@ -14,7 +14,6 @@ and update it's word count directly.
 The notification system has not been fully integrated.
 
 The following changes need to be made to the app:
-1. New projects do not reflect the correct date/word count goal and advised daily goal is set to 0.
 2. Cannot navigate back to "home" page once a project is selected.
 
 The next steps for this app, to be finished by graduation, will be to make the notifications fully functional and to make the date
