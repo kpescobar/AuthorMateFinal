@@ -24,12 +24,17 @@
       android:id="@+id/left_drawer"
       android:layout_width="match_parent"
       android:layout_height="508dp"
-      android:layout_gravity="bottom" >
+      android:layout_gravity="center_vertical"
+      android:orientation="vertical">
+      <TextView
+        android:id="@+id/home_link"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Home" />
       <ListView
         android:id="@+id/left_drawer_list"
         android:layout_width="match_parent"
-        android:layout_height="656dp">
-      </ListView>
+        android:layout_height="656dp"></ListView>
     </LinearLayout>
 
   </android.support.design.widget.NavigationView>

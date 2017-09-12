@@ -25,6 +25,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 import com.j256.ormlite.android.apptools.OpenHelperManager;
 import com.j256.ormlite.dao.Dao;
@@ -109,6 +110,17 @@ public class NavigationActivity extends AppCompatActivity {
     drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
     drawer = (NavigationView) findViewById(R.id.nav_view);
     drawerList = (ListView) findViewById(R.id.left_drawer_list);
+
+    TextView homeLink = (TextView) findViewById(R.id.home_link);
+    homeLink.setOnClickListener(new OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        Fragment fragment = new HomeFragment();
+        switchFragment(fragment);
+        setTitle(title);
+        drawerLayout.closeDrawer(drawer);
+      }
+    });
 
     // set up the drawer's list view with items and click listener
     setNavigationProjects();
@@ -220,6 +232,7 @@ public class NavigationActivity extends AppCompatActivity {
 // listener
   private void selectItem(int position, Project project) {
     // update the main content by replacing fragments
+
     Fragment fragment = new ProjectFragment();
     Bundle args = new Bundle();
     args.putString(ProjectFragment.PROJECT_TITLE, project.getTitle());
@@ -227,6 +240,8 @@ public class NavigationActivity extends AppCompatActivity {
     fragment.setArguments(args);
 
     switchFragment(fragment);
+
+    
 
     // update selected item and title, then close the drawer
     drawerList.setItemChecked(position, true);
