@@ -7,7 +7,8 @@
   <TextView
     android:id="@+id/projectText"
     android:layout_width="match_parent"
-    android:layout_height="45dp"
+    android:layout_height="wrap_content"
+    android:textSize="30dp"
     android:gravity="center"
     android:text="@string/project" />
   <LinearLayout
@@ -17,15 +18,17 @@
     <TextView
       android:id="@+id/wordCountText"
       android:layout_width="168dp"
-      android:layout_height="25dp"
+      android:layout_height="wrap_content"
+      android:textSize="25dp"
       android:layout_marginStart="25dp"
       android:gravity="start"
       android:text="@string/word_count_goal" />
     <TextView
       android:id="@+id/wordCountTextView"
       android:layout_width="match_parent"
-      android:layout_height="25dp"
+      android:layout_height="wrap_content"
       android:gravity="center"
+      android:textSize="25dp"
       android:text="TextView" />
   </LinearLayout>
   <LinearLayout
@@ -35,23 +38,26 @@
     <TextView
       android:id="@+id/deadlineText"
       android:layout_width="168dp"
-      android:layout_height="25dp"
+      android:layout_height="wrap_content"
       android:layout_marginStart="25dp"
       android:gravity="start"
+      android:textSize="25dp"
       android:text="@string/deadline" />
     <TextView
       android:id="@+id/deadlineTextView"
       android:layout_width="match_parent"
-      android:layout_height="25dp"
+      android:layout_height="wrap_content"
+      android:textSize="25dp"
       android:gravity="center"
       android:text="TextView" />
   </LinearLayout>
   <TextView
     android:id="@+id/progressText"
     android:layout_width="match_parent"
-    android:layout_height="35dp"
+    android:layout_height="wrap_content"
     android:paddingBottom="10dp"
     android:layout_marginStart="0dp"
+    android:textSize="30dp"
     android:gravity="center"
     android:text="@string/progress" />
   <LinearLayout
@@ -61,20 +67,22 @@
     <TextView
       android:id="@+id/wordsWritten"
       android:layout_width="match_parent"
-      android:layout_height="30dp"
+      android:layout_height="wrap_content"
       android:layout_weight="1"
       android:layout_marginStart="25dp"
       android:paddingTop="5dp"
       android:paddingBottom="5dp"
+      android:textSize="25dp"
       android:text="@string/words_written" />
     <TextView
       android:id="@+id/wordsWrittenText"
       android:layout_width="match_parent"
-      android:layout_height="30dp"
+      android:layout_height="wrap_content"
       android:layout_weight="1"
       android:paddingTop="5dp"
       android:paddingBottom="5dp"
       android:gravity="center"
+      android:textSize="25dp"
       android:text="TextView" />
   </LinearLayout>
   <LinearLayout
@@ -84,19 +92,21 @@
     <TextView
       android:id="@+id/wordsRemaining"
       android:layout_width="match_parent"
-      android:layout_height="30dp"
+      android:layout_height="wrap_content"
       android:layout_weight="1"
       android:layout_marginStart="25dp"
+      android:textSize="25dp"
       android:paddingTop="5dp"
       android:paddingBottom="5dp"
       android:text="@string/words_remaining" />
     <TextView
       android:id="@+id/wordsRemainingText"
       android:layout_width="match_parent"
-      android:layout_height="30dp"
+      android:layout_height="wrap_content"
       android:layout_weight="1"
       android:paddingTop="5dp"
       android:paddingBottom="5dp"
+      android:textSize="25dp"
       android:gravity="center"
       android:text="TextView" />
   </LinearLayout>
@@ -107,20 +117,23 @@
     <TextView
       android:id="@+id/advisedDailyGoal"
       android:layout_width="match_parent"
-      android:layout_height="30dp"
+      android:layout_height="wrap_content"
       android:layout_weight="1"
       android:layout_marginStart="25dp"
       android:paddingTop="5dp"
       android:paddingBottom="5dp"
+      android:textSize="25dp"
+      android:padding="5dp"
       android:text="@string/advised_daily_goal" />
     <TextView
       android:id="@+id/advisedDailyText"
       android:layout_width="match_parent"
-      android:layout_height="30dp"
+      android:layout_height="wrap_content"
       android:layout_weight="1"
       android:paddingTop="5dp"
       android:paddingBottom="5dp"
       android:gravity="center"
+      android:textSize="25dp"
       android:text="TextView" />
 
   </LinearLayout>
@@ -167,18 +180,21 @@
           android:id="@+id/textView5"
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
+          android:textSize="25dp"
           android:text="Word Count for Today" />
         <EditText
           android:id="@+id/editTextUpdate"
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
           android:ems="10"
+          android:textSize="25dp"
           android:inputType="number" />
         <Button
           android:id="@+id/updateButton"
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
           android:enabled="false"
+          android:textSize="25dp"
           android:text="Update" />
       </RadioGroup>
     </LinearLayout>

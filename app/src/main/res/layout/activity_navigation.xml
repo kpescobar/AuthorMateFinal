@@ -30,6 +30,8 @@
         android:id="@+id/home_link"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textSize="45dp"
         android:text="Home" />
       <ListView
         android:id="@+id/left_drawer_list"

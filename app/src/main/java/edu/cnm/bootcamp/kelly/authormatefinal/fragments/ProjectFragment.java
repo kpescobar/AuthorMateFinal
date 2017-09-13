@@ -114,30 +114,30 @@ public class ProjectFragment extends Fragment implements OnClickListener {
 //    RadioButton offButton = (RadioButton) layout.findViewById(R.id.radioButtonOff);
 //    offButton.setOnClickListener(this);
 ////Added all of this...
-//    Button updateButton = (Button) layout.findViewById(R.id.updateButton);
-//    updateButton.setOnClickListener(new View.OnClickListener() {
-//      @Override
-//      public void onClick(View view) {
-//        try {
-//          Dao<ProjectUpdate, Integer> dao = ((NavigationActivity) getActivity()).getHelper().getProjectUpdateDao();
-//          ProjectUpdate update = new ProjectUpdate();
-//
-//          EditText editTextUpdate = (EditText) layout.findViewById(R.id.editTextUpdate);
-//          update.setCount(Integer.parseInt(editTextUpdate.getText().toString()));
-//
-//          editTextUpdate.setText(""); //added
-//
-//          update.setProject(currentProject);
-//
-//          dao.create(update);
-//
-//          updateStats(layout);
-//
-//        } catch (SQLException ex) {
-//          ex.printStackTrace();
-//        }
-//      }
-//    });
+    Button updateButton = (Button) layout.findViewById(R.id.updateButton);
+    updateButton.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View view) {
+        try {
+          Dao<ProjectUpdate, Integer> dao = ((NavigationActivity) getActivity()).getHelper().getProjectUpdateDao();
+          ProjectUpdate update = new ProjectUpdate();
+
+          EditText editTextUpdate = (EditText) layout.findViewById(R.id.editTextUpdate);
+          update.setCount(Integer.parseInt(editTextUpdate.getText().toString()));
+
+          editTextUpdate.setText(""); //added
+
+          update.setProject(currentProject);
+
+          dao.create(update);
+
+          updateStats(layout);
+
+        } catch (SQLException ex) {
+          ex.printStackTrace();
+        }
+      }
+    });
 
     return layout;
   }

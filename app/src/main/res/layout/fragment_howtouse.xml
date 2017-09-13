@@ -10,20 +10,22 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:text="Author Mate is a tool for writers to set writing goals/deadlines for any project."
+    android:textSize="28dp"
+    android:paddingBottom="5dp"
     android:layout_weight="0.20" />
   <TextView
     android:id="@+id/textView3"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:text="To create a new project: Give it a title, enter a word count goal, choose the
-    date you want to be finished by and it's that easy."
+    android:text="To create a new project: Give it a title, enter a word count goal, choose the date you want to be finished by and it's that easy."
+    android:textSize="28dp"
+    android:paddingBottom="5dp"
     android:layout_weight="0.19" />
   <TextView
     android:id="@+id/textView4"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:text="To update an existing project: Choose your project, enter your word count for the
-    day in the text field and it will add that amount to your existing word count to
-    date."
+    android:text="To update an existing project: Choose your project, enter your word count for the day in the text field and it will add that amount to your existing word count to date."
+    android:textSize="28dp"
     android:layout_weight="0.20" />
 </LinearLayout>

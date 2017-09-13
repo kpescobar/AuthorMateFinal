@@ -8,6 +8,9 @@
   android:paddingLeft="16dp"
   android:paddingRight="16dp"
   android:textColor="#020466"
+  android:textSize="45dp"
+  android:paddingTop="15dp"
+  android:paddingBottom="15dp"
   android:background="?android:attr/activatedBackgroundIndicator"
   android:minHeight="?android:attr/listPreferredItemHeightSmall"
   xmlns:android="http://schemas.android.com/apk/res/android" />
